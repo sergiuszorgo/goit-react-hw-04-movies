@@ -1,0 +1,19 @@
+.Menu {
+  box-shadow: 0px 2px 6px 2px rgb(0 0 0 / 0.5);
+}
+.NavList {
+  display: flex;
+  padding: 20px 5px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.NavLink {
+  font-size: 30px;
+  color: currentColor;
+  text-decoration: none;
+  margin-left: 20px;
+}
+
+.NavLinkActive {
+  color: red;
+}
