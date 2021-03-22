@@ -48,8 +48,9 @@ class MovieDetailsPage extends Component {
     const { location, history } = this.props;
     // if (location.state && location.state.from) {
     //   return history.push(location.state.from);
-    // } else history.push(routes.moviesPage);
-    history.push(location?.state?.from || routes.home);
+    // }
+    // history.push(routes.homePage);
+    history.push(location?.state?.from || routes.homePage);
   };
 
   render() {
@@ -59,7 +60,11 @@ class MovieDetailsPage extends Component {
       <>
         <div className={s.container}>
           <div>
-            <button type="button" onClick={this.hendleGoBack}>
+            <button
+              type="button"
+              onClick={this.hendleGoBack}
+              className={s.buttonBack}
+            >
               Go back
             </button>
             <img
@@ -69,7 +74,7 @@ class MovieDetailsPage extends Component {
             />
           </div>
           <div className={s.overview}>
-            <h2>{title}</h2>
+            <h2 className={s.moviTitle}>{title}</h2>
             <p>User Score: {`${vote_average * 10}%`}</p>
             <h4>Overview</h4>
             <p>{overview}</p>
@@ -89,10 +94,14 @@ class MovieDetailsPage extends Component {
           <h4>Additional information</h4>
           <ul>
             <li>
-              <NavLink to={`${match.url}/cast`}>Cast</NavLink>
+              <NavLink to={`${match.url}/cast`} className={s.addLink}>
+                Cast
+              </NavLink>
             </li>
             <li>
-              <NavLink to={`${match.url}/reviews`}>Reviews</NavLink>
+              <NavLink to={`${match.url}/reviews`} className={s.addLink}>
+                Reviews
+              </NavLink>
             </li>
           </ul>
         </div>

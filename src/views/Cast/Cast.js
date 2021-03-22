@@ -13,7 +13,7 @@ class Cast extends Component {
     const response = await axios.get(
       `https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=f5571a4d0dffe86480c58c41c5dbcd23&language=en-US`
     );
-    console.log(response.data.cast);
+    // console.log(response.data.cast);
     this.setState({ cast: response.data.cast });
   }
   render() {
@@ -23,7 +23,7 @@ class Cast extends Component {
         <ul className={s.table}>
           {cast.map((el) => {
             return (
-              <li className={s.item}>
+              <li className={s.item} key={el.id}>
                 <img
                   src={
                     el.profile_path

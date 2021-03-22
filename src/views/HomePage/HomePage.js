@@ -26,7 +26,9 @@ class HomePage extends Component {
         <ul>
           {this.state.movies.map((movie) => (
             <li key={movie.id}>
-              <Link to={`/movies/${movie.id}`}>{movie.original_title}</Link>
+              <Link to={`/movies/${movie.id}`} className={s.filmsItem}>
+                {movie.original_title}
+              </Link>
             </li>
           ))}
         </ul>

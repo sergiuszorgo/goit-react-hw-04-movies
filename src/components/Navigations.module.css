@@ -3,6 +3,7 @@
 }
 .NavList {
   display: flex;
+  list-style: none;
   padding: 20px 5px;
   max-width: 1200px;
   margin: 0 auto;

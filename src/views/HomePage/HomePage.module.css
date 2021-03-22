@@ -4,3 +4,17 @@
   padding-right: 5px;
   margin: 0 auto;
 }
+
+.filmsList {
+  margin-left: 10px;
+}
+
+.filmsItem {
+  text-decoration: none;
+  color: #494949;
+  font-weight: 500;
+}
+
+.filmsItem:hover {
+  text-decoration: underline;
+}

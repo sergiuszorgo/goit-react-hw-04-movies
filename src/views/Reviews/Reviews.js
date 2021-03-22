@@ -11,7 +11,7 @@ class Reviews extends Component {
     const response = await axios.get(
       `https://api.themoviedb.org/3/movie/${movieId}/reviews?api_key=f5571a4d0dffe86480c58c41c5dbcd23&language=en-US`
     );
-    console.log(response.data.results);
+    // console.log(response.data.results);
     this.setState({ reviews: response.data.results });
   }
   render() {

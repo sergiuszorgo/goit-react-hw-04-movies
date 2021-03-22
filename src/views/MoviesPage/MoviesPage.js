@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Route, NavLink, Link, Redirect, Switch } from "react-router-dom";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import s from "./MoviesPage.module.css";
 
@@ -40,15 +40,20 @@ class MoviesPage extends Component {
               placeholder="Search movies"
               onChange={this.hendleChange}
               value={this.state.query}
+              className={s.inputLine}
             />
-            <button type="submit">Search</button>
+            <button type="submit" className={s.inputBtn}>
+              Search
+            </button>
           </form>
         </div>
         <div>
           <ul>
             {movies.map((movie) => (
               <li key={movie.id}>
-                <Link to={`/movies/${movie.id}`}>{movie.original_title}</Link>
+                <Link to={`/movies/${movie.id}`} className={s.filmLink}>
+                  {movie.original_title}
+                </Link>
               </li>
             ))}
           </ul>
