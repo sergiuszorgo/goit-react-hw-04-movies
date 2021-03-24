@@ -1,19 +1,48 @@
 import "./App.css";
-import React from "react";
-import { Route, Switch } from "react-router-dom";
-import HomePage from "./views/HomePage/HomePage";
-import MoviesPage from "./views/MoviesPage/MoviesPage";
-import MovieDetailsPage from "./views/MovieDetailsPage/MovieDetailsPage";
-import Navigations from "./components/Navigations";
+import React, { Suspense, lazy } from "react";
+import { Route, Switch, Redirect } from "react-router-dom";
+import Loader from "react-loader-spinner";
+// import HomePage from "./views/HomePage/HomePage";
+// import MoviesPage from "./views/MoviesPage/MoviesPage";
+// import MovieDetailsPage from "./views/MovieDetailsPage/MovieDetailsPage";
+import Navigations from "./components/Navigations/Navigations";
+import routes from "./routes";
+
+const HomePage = lazy(() =>
+  import("./views/HomePage/HomePage" /* webpackChunkName: "HomePage" */)
+);
+const MoviesPage = lazy(() =>
+  import(
+    "./views/MoviesPage/MoviesPage.js" /* webpackChunkName: "MoviesPage" */
+  )
+);
+const MovieDetailsPage = lazy(() =>
+  import(
+    "./views/MovieDetailsPage/MovieDetailsPage" /* webpackChunkName: "MovieDetailsPage" */
+  )
+);
 
 const App = () => (
   <>
     <Navigations />
-    <Switch>
-      <Route exact path="/" component={HomePage} />
-      <Route path="/movies/:movieId" component={MovieDetailsPage} />
-      <Route path="/movies" component={MoviesPage} />
-    </Switch>
+    <Suspense
+      fallback={
+        <Loader
+          className="loader"
+          type="Bars"
+          color="#00BFFF"
+          height={100}
+          width={100}
+        />
+      }
+    >
+      <Switch>
+        <Route exact path={routes.homePage} component={HomePage} />
+        <Route exact path={routes.moviesPage} component={MoviesPage} />
+        <Route path={routes.movieDetailsPage} component={MovieDetailsPage} />
+        <Redirect to="/" />
+      </Switch>
+    </Suspense>
   </>
 );
 

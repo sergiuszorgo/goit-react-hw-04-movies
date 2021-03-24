@@ -1,38 +1,26 @@
-import React, { Component } from "react";
+import React, { Component, Suspense, lazy } from "react";
 import { Route, NavLink, Switch } from "react-router-dom";
 import axios from "axios";
+import Loader from "react-loader-spinner";
 import s from "./MovieDetailsPage.module.css";
-import Cast from "../Cast/Cast";
-import Reviews from "../Reviews/Reviews";
+// import Cast from "../../components/Cast/Cast";
+// import Reviews from "../../components/Reviews/Reviews";
 import routes from "../../routes";
+
+const Cast = lazy(() =>
+  import("../../components/Cast/Cast" /* webpackChunkName: "Cast" */)
+);
+const Reviews = lazy(() =>
+  import("../../components/Reviews/Reviews" /* webpackChunkName: "Reviews" */)
+);
 
 class MovieDetailsPage extends Component {
   state = {
-    adult: null,
-    backdrop_path: null,
-    belongs_to_collection: null,
-    budget: null,
-    genres: null,
-    homepage: null,
-    id: null,
-    imdb_id: null,
-    original_language: null,
-    original_title: null,
-    overview: null,
-    popularity: null,
-    poster_path: null,
-    production_companies: null,
-    production_countries: null,
-    release_date: null,
-    revenue: null,
-    runtime: null,
-    spoken_languages: null,
-    status: null,
-    tagline: null,
-    title: null,
-    video: null,
-    vote_average: null,
-    vote_count: null,
+    genres: null, //
+    overview: null, //
+    poster_path: null, //
+    title: null, //
+    vote_average: null, //
   };
   async componentDidMount() {
     const { movieId } = this.props.match.params;
@@ -55,7 +43,7 @@ class MovieDetailsPage extends Component {
 
   render() {
     const { title, vote_average, overview, genres, poster_path } = this.state;
-    const { match } = this.props;
+    const { match, location } = this.props;
     return (
       <>
         <div className={s.container}>
@@ -94,21 +82,45 @@ class MovieDetailsPage extends Component {
           <h4>Additional information</h4>
           <ul>
             <li>
-              <NavLink to={`${match.url}/cast`} className={s.addLink}>
+              <NavLink
+                to={{
+                  pathname: `${match.url}/cast`,
+                  state: { from: location },
+                }}
+                className={s.addLink}
+              >
                 Cast
               </NavLink>
             </li>
             <li>
-              <NavLink to={`${match.url}/reviews`} className={s.addLink}>
+              <NavLink
+                to={{
+                  pathname: `${match.url}/reviews`,
+                  state: { from: location },
+                }}
+                className={s.addLink}
+              >
                 Reviews
               </NavLink>
             </li>
           </ul>
         </div>
-        <Switch>
-          <Route path={`${match.path}/cast`} component={Cast} />
-          <Route path={`${match.path}/reviews`} component={Reviews} />
-        </Switch>
+        <Suspense
+          fallback={
+            <Loader
+              className="loader"
+              type="Bars"
+              color="#00BFFF"
+              height={100}
+              width={100}
+            />
+          }
+        >
+          <Switch>
+            <Route path={`${match.path}/cast`} component={Cast} />
+            <Route path={`${match.path}/reviews`} component={Reviews} />
+          </Switch>
+        </Suspense>
       </>
     );
   }
