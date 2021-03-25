@@ -1,6 +1,6 @@
 import { Component } from "react";
 import { Link } from "react-router-dom";
-import axios from "axios";
+import movieRequests from "../../services/movieRequests";
 import s from "./HomePage.module.css";
 
 class HomePage extends Component {
@@ -9,14 +9,8 @@ class HomePage extends Component {
   };
 
   async componentDidMount() {
-    const response = await axios.get(
-      "https://api.themoviedb.org/3/trending/movie/day?api_key=f5571a4d0dffe86480c58c41c5dbcd23"
-    );
-    // console.log(response.data.results);
-
-    this.setState({
-      movies: response.data.results,
-    });
+    const respMovies = await movieRequests.fetchTrending();
+    this.setState({ movies: respMovies });
   }
 
   render() {

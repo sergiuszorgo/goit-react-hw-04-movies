@@ -1,0 +1,27 @@
+.formInput {
+  text-align: center;
+  padding: 20px 0;
+}
+
+.inputLine {
+  font-size: 20px;
+  padding: 5px;
+  border: 1px solid lightslategray;
+  outline: none;
+  border-radius: 5px;
+}
+
+.inputBtn {
+  padding: 6px;
+  font-size: 20px;
+  background-color: lightslategray;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  margin-left: 5px;
+}
+
+.inputBtn:hover,
+.inputBtn:focus {
+  background-color: #1a73e8;
+}

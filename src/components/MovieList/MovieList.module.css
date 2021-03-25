@@ -1,0 +1,9 @@
+.filmLink {
+  text-decoration: none;
+  color: #494949;
+  font-weight: 500;
+}
+
+.filmLink:hover {
+  text-decoration: underline;
+}

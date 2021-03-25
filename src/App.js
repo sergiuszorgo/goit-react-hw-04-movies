@@ -2,9 +2,6 @@ import "./App.css";
 import React, { Suspense, lazy } from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
 import Loader from "react-loader-spinner";
-// import HomePage from "./views/HomePage/HomePage";
-// import MoviesPage from "./views/MoviesPage/MoviesPage";
-// import MovieDetailsPage from "./views/MovieDetailsPage/MovieDetailsPage";
 import Navigations from "./components/Navigations/Navigations";
 import routes from "./routes";
 
