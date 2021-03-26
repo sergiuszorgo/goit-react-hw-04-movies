@@ -1,0 +1,1 @@
+{"version":3,"sources":["webpack://src/components/Reviews/Reviews.module.css"],"names":[],"mappings":"AAAA,wBACE,gBAAiB,CACjB,gBAAiB,CACjB,iBAAkB,CAClB,aACF","file":"Reviews.bcfa9e2e.chunk.css","sourcesContent":[".reviews {\r\n  max-width: 1200px;\r\n  padding-left: 5px;\r\n  padding-right: 5px;\r\n  margin: 0 auto;\r\n}\r\n"]}
