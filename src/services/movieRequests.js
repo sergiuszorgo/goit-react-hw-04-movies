@@ -27,7 +27,7 @@ const fetchCast = (movieId) => {
   return axios
     .get(`/movie/${movieId}/credits?api_key=${APIkey}&language=en-US`)
     .then((response) => response.data.cast);
-};
+}; //
 const fetchReview = (movieId) => {
   return axios
     .get(`/movie/${movieId}/reviews?api_key=${APIkey}&language=en-US&page=1`)

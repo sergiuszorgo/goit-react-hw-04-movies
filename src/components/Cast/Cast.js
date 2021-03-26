@@ -1,6 +1,7 @@
 import React, { Component } from "react";
-import axios from "axios";
+// import axios from "axios";
 import defaultPhoto from "./defaultImg.jpg";
+import movieRequests from "../../services/movieRequests";
 import s from "./Cast.module.css";
 
 class Cast extends Component {
@@ -8,14 +9,21 @@ class Cast extends Component {
     cast: [],
   };
 
+  // async componentDidMount() {
+  //   const { movieId } = this.props.match.params;
+  //   const response = await axios.get(
+  //     `https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=f5571a4d0dffe86480c58c41c5dbcd23&language=en-US`
+  //   );
+  //   // console.log(response.data.cast);
+  //   this.setState({ cast: response.data.cast });
+  // }
   async componentDidMount() {
     const { movieId } = this.props.match.params;
-    const response = await axios.get(
-      `https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=f5571a4d0dffe86480c58c41c5dbcd23&language=en-US`
-    );
-    // console.log(response.data.cast);
-    this.setState({ cast: response.data.cast });
+    const response = await movieRequests.fetchCast(movieId);
+    // console.log(response);
+    this.setState({ cast: response });
   }
+
   render() {
     const { cast } = this.state;
     return (

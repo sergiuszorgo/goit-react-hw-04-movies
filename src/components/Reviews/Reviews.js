@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import axios from "axios";
+// import axios from "axios";
+import movieRequests from "../../services/movieRequests";
 import s from "./Reviews.module.css";
 
 class Reviews extends Component {
@@ -8,11 +9,12 @@ class Reviews extends Component {
   };
   async componentDidMount() {
     const { movieId } = this.props.match.params;
-    const response = await axios.get(
-      `https://api.themoviedb.org/3/movie/${movieId}/reviews?api_key=f5571a4d0dffe86480c58c41c5dbcd23&language=en-US`
-    );
-    // console.log(response.data.results);
-    this.setState({ reviews: response.data.results });
+    // const response = await axios.get(
+    //   `https://api.themoviedb.org/3/movie/${movieId}/reviews?api_key=f5571a4d0dffe86480c58c41c5dbcd23&language=en-US`
+    // );
+    const response = await movieRequests.fetchReview(movieId);
+    // console.log(response);
+    this.setState({ reviews: response });
   }
   render() {
     const { reviews } = this.state;

@@ -1,6 +1,7 @@
 import React, { Component, Suspense, lazy } from "react";
 import { Route, NavLink, Switch } from "react-router-dom";
 import movieRequests from "../../services/movieRequests";
+import defaultPhoto from "../../components/Cast/defaultImg.jpg";
 // import axios from "axios";
 import Loader from "react-loader-spinner";
 import s from "./MovieDetailsPage.module.css";
@@ -65,14 +66,14 @@ class MovieDetailsPage extends Component {
             >
               Go back
             </button>
-            {/* <img
-              src={`https://image.tmdb.org/t/p/w500${poster_path}`}
-              alt=""
-              className={s.poster}
-            /> */}
-            {poster_path && (
+            {/* {poster_path && (
               <img src={imgUrl} alt={title} className={s.poster} />
-            )}
+            )} */}
+            <img
+              src={poster_path ? `${imgUrl}` : `${defaultPhoto}`}
+              alt={title}
+              className={s.poster}
+            />
           </div>
           <div className={s.overview}>
             <h2 className={s.moviTitle}>{title}</h2>
