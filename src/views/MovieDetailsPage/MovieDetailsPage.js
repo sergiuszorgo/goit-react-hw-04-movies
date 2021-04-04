@@ -2,11 +2,8 @@ import React, { Component, Suspense, lazy } from "react";
 import { Route, NavLink, Switch } from "react-router-dom";
 import movieRequests from "../../services/movieRequests";
 import defaultPhoto from "../../components/Cast/defaultImg.jpg";
-// import axios from "axios";
 import Loader from "react-loader-spinner";
 import s from "./MovieDetailsPage.module.css";
-// import Cast from "../../components/Cast/Cast";
-// import Reviews from "../../components/Reviews/Reviews";
 import routes from "../../routes";
 
 const Cast = lazy(() =>
@@ -24,22 +21,15 @@ class MovieDetailsPage extends Component {
     title: null, //
     vote_average: null, //
   };
-  // async componentDidMount() {
-  //   const { movieId } = this.props.match.params;
-  //   const response = await axios.get(
-  //     `https://api.themoviedb.org/3/movie/${movieId}?api_key=f5571a4d0dffe86480c58c41c5dbcd23&language=en-US`
-  //   );
-
-  //   this.setState({
-  //     ...response.data,
-  //   });
-  // }
 
   async componentDidMount() {
-    const movieId = this.props.match.params.movieId;
-    const responceMovie = await movieRequests.fetchMovieId(movieId);
-    // console.log(responceMovie);
-    this.setState({ ...responceMovie });
+    try {
+      const movieId = this.props.match.params.movieId;
+      const responceMovie = await movieRequests.fetchMovieId(movieId);
+      this.setState({ ...responceMovie });
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   hendleGoBack = () => {
@@ -66,9 +56,6 @@ class MovieDetailsPage extends Component {
             >
               Go back
             </button>
-            {/* {poster_path && (
-              <img src={imgUrl} alt={title} className={s.poster} />
-            )} */}
             <img
               src={poster_path ? `${imgUrl}` : `${defaultPhoto}`}
               alt={title}

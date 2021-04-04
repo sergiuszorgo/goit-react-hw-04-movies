@@ -10,8 +10,12 @@ class MoviesList extends Component {
     movies: [],
   };
   async componentDidMount() {
-    const responce = await movieRequests.fetchMovie(this.props.searchMovie);
-    this.setState({ movies: responce.results });
+    try {
+      const responce = await movieRequests.fetchMovie(this.props.searchMovie);
+      this.setState({ movies: responce.results });
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   componentDidUpdate(prevProps, prevState) {

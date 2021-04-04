@@ -9,8 +9,12 @@ class HomePage extends Component {
   };
 
   async componentDidMount() {
-    const respMovies = await movieRequests.fetchTrending();
-    this.setState({ movies: respMovies });
+    try {
+      const respMovies = await movieRequests.fetchTrending();
+      this.setState({ movies: respMovies });
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   render() {
