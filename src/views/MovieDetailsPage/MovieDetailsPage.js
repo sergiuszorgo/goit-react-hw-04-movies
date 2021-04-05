@@ -86,7 +86,7 @@ class MovieDetailsPage extends Component {
               <NavLink
                 to={{
                   pathname: `${match.url}/cast`,
-                  state: { from: location },
+                  state: { ...this.props.location.state },
                 }}
                 className={s.addLink}
               >
@@ -97,7 +97,7 @@ class MovieDetailsPage extends Component {
               <NavLink
                 to={{
                   pathname: `${match.url}/reviews`,
-                  state: { from: location },
+                  state: { ...this.props.location.state },
                 }}
                 className={s.addLink}
               >
